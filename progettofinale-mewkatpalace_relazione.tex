@@ -64,14 +64,23 @@ A seguire il frammento di codice relativo alla card sopradetta e come appare l'a
 	\includegraphics[height=18cm, width=\columnwidth]{img/codicecard.png}
 \end{figure}
 
-
-
-
 \begin{figure}
 	\includegraphics[width=\columnwidth]{img/screenapp.jpg}
 \end{figure}\break
  
+ \section{Backend}
+ 
+ Lo studente Davide Carnemolla si è dedicato alla stesura del backend del progetto utilizzando il framework Express.js e Mongodb. Nell'applicazione vengono definiti due modelli:
+ 
+ \begin{itemize}
+ \item Review: rappresenta una recensione scritta da un utente
+ \item Token: rappresenta un token generato durante la fase di prenotazione (non prevista dall'applicazione).
+\end{itemize}
 
+\noindent Per ciascuno di questi sono state definite delle route per eseguire le classiche operazioni di creazione, cancellazione, modifica e rimozione.\\
+Per facilitare la fase di sviluppo e di "deployment" del progetto è stato utilizzato Docker. È possibile infatti lanciare il backend e Mongodb attraverso Docker Compose.\\
+Come editor è stato utilizzato Visual Studio Code ed è stato utilizzato Github per effettuare versioning e mantenere il codice al sicuro.\\
+Inoltre, per agevolare il coordinamento con gli studenti delegati allo sviluppo del frontend, è stata generata una documentazione delle REST API attraverso apidocjs.
 
 
 
