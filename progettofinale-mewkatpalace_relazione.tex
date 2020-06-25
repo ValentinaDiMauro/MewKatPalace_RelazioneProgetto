@@ -3,11 +3,39 @@
 \geometry{top=4cm,bottom=3cm,left=2cm,right=2cm}
 \usepackage{guit}
 \usepackage{graphicx}
+\usepackage{listings}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{setspace}
+
 \onehalfspacing
+
+\lstset{ 
+  backgroundcolor=\color{white},
+  basicstyle=\footnotesize,     
+  breakatwhitespace=false,      
+  breaklines=true,              
+  captionpos=b,                 
+  commentstyle=\color{mygreen}, 
+  deletekeywords={...},         
+  escapeinside={\%*}{*),{<},{>}},       
+  extendedchars=true,           
+  frame=single,	                
+  keepspaces=true,              
+  keywordstyle=\color{blue},    
+  language=HTML,              
+  morekeywords={ion, card, item, label, col, row, button, grid},
+  numbersep=5pt,                
+  showtabs=false, 
+  stepnumber=2,                   
+  stringstyle=\color{black},    
+  tabsize=2,	                   
+  title=\lstname                
+}
+
+
+
 \title{Progetto finale\\Innovative methods to design, develop and manage complex applications}
 \author{Valentina Di Mauro, Davide Carnemolla e Lorenzo Catania}
 
@@ -18,7 +46,7 @@
 	Gli studenti Davide Carnemolla, Lorenzo Catania e Valentina Di Mauro presentano il seguente progetto elaborato in linea con le lezioni seminariali svoltesi durante il secondo semestre dell'anno accademico 2019-2020 e tenute da alcuni membri dell'azienda Paradigma.\\ 
 	In particolare era stato richiesto di sviluppare un'applicazione client server con il framework Ionic, backend con il database non relazionale MongoDB e una tecnologia a scelta tra Angular e Node.js per il lato frontend. \\La decisione è ricaduta sull'impiego di Angular e i ruoli sono stati così divisi: Davide Carnemolla si è occupato dello sviluppo backend mentre Valentina Di Mauro e Lorenzo Catania del frontend. 
 	\section{Idea del progetto}{
-	Il team ha deciso di implementare un'applicazione di un albergo, denominato MewKat Palace, dove gli utenti hanno la possibilità di inserire delle recensioni e leggere e valutare quelle degli altri visitatori. \\In dettaglio le recensioni constano sia di stelle (con range da 0 a 5) che di testo.
+	Il team ha deciso di implementare un'applicazione di un albergo, denominato MewKat Palace, dove gli utenti hanno la possibilità di inserire delle recensioni e leggere e valutare quelle degli altri visitatori. \\In dettaglio le recensioni constano sia di stelle (con range da 1 a 5) che di testo.
 	Coloro che leggono la recensione possono inserire un voto a favore (like) o a sfavore (dislike), indicati rispettivamente con pollice in sù e in giù.
 }
 	\section{Prima fase del progetto}{
@@ -60,9 +88,38 @@ L'app è stata dotata di 3 Tabs: la prima rappresentante la pagina principale co
 Come editor è stato impiegato Visual Studio Code ed è stato utilizzato GitHub per poter interagire tra i vari membri del gruppo ed assicurarsi un versioning e un backup dei sorgenti.\\ 
 Come riferimento è stata consultata la documentazione ufficiale di Ionic e Angular.\\ La tab delle recensioni è stata pensata come un insieme di card dotate di bottoni. 
 A seguire il frammento di codice relativo alla card sopradetta e come appare l'app con la visualizzazione in tempo reale dal Lab:\\
-\begin{figure}
-	\includegraphics[height=18cm, width=\columnwidth]{img/codicecard.png}
-\end{figure}
+
+\begin{lstlisting}
+	<ion-card *ngFor="let review of reviews">
+    <ion-item>
+      <ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <i>{{review.name}} {{review.lastname}}</i>
+            </ion-col>
+            <ion-col push="4" class="ion-align-self-end">
+              <b>{{review.stars}} </b>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h2>{{review.message}}</h2>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col pull="0">
+              <ion-button (click)="addLike(review._id)"> {{ review.like }}</ion-button>
+            </ion-col>
+            <ion-col pull="3">
+              <ion-button  (click)="addDislike(review._id)"> {{ review.dislike }}</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+\end{lstlisting}
 
 \begin{figure}
 	\includegraphics[width=\columnwidth]{img/screenapp.jpg}
@@ -81,8 +138,5 @@ A seguire il frammento di codice relativo alla card sopradetta e come appare l'a
 Per facilitare la fase di sviluppo e di "deployment" del progetto è stato utilizzato Docker. È possibile infatti lanciare il backend e Mongodb attraverso Docker Compose.\\
 Come editor è stato utilizzato Visual Studio Code ed è stato utilizzato Github per effettuare versioning e mantenere il codice al sicuro.\\
 Inoltre, per agevolare il coordinamento con gli studenti delegati allo sviluppo del frontend, è stata generata una documentazione delle REST API attraverso apidocjs.
-
-
-
 
 \end{document}	
